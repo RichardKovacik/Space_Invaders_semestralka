@@ -29,7 +29,7 @@ public class HraciaPlocha extends JPanel {
     private Hra hra;
 
     public HraciaPlocha(Hra hra) {
-        this.setSize(SIRKA, VYSKA);
+        this.setSize(SIRKA, VYSKA)
         this.setPreferredSize(new Dimension(SIRKA, VYSKA));
         this.setBackground(Color.BLACK);
         this.setFocusable(true);
