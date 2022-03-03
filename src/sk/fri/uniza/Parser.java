@@ -77,12 +77,14 @@ public class Parser {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            objectInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         this.utriedHracovPodlaSkore();
 
     }
