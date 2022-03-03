@@ -85,12 +85,6 @@ public class Parser {
             }
         }
 
-        this.utriedHracovPodlaSkore();
-
-    }
-    //utried hracov podla skore od najvacsieho po najmensi
-    private void utriedHracovPodlaSkore() {
-        this.profil.getZoznamHracov().sort(Comparator.comparingInt(Hrac::getScore).reversed());
     }
 
     public Profil getProfil() {

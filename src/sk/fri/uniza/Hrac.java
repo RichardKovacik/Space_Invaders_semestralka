@@ -150,10 +150,6 @@ public class Hrac extends Bytost {
         this.vystrel = vystrel;
     }
 
-    public ArrayList<Raketa> getRakety() {
-        return this.rakety;
-    }
-
     public void setRakety(ArrayList<Raketa> rakety) {
         this.rakety = rakety;
     }
@@ -161,8 +157,8 @@ public class Hrac extends Bytost {
     @Override
     public String toString() {
         return "Hrac{" +
-                "meno='" + meno + '\'' +
-                ", score=" + score +
+                "meno='" + this.meno + '\'' +
+                ", score=" + this.score +
                 '}';
     }
 }

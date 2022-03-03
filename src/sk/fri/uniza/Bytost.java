@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -30,6 +31,22 @@ public abstract class Bytost implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public void odstranZniceneRakety() {
+        Iterator<Raketa> iterator = this.rakety.iterator();
+        while (iterator.hasNext()) {
+            Raketa raketa = iterator.next();
+            if (raketa.jeZnicena()) {
+                iterator.remove();
+            }
+        }
+    }
+
+    //vraciam len hodnoty arralistu v novom arrayliste, nepracujem s existujucou referenciou objektu
+    //neporusujem enkapsulaciu
+    public ArrayList<Raketa> getRakety() {
+        return new ArrayList<>(this.rakety);
     }
 
     protected void zomri() {

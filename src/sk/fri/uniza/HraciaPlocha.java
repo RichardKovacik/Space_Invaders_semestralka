@@ -107,7 +107,7 @@ public class HraciaPlocha extends JPanel {
         }
         //kotrola zrazky mimozemskej rakety s hracom
         for (int i = 1; i < this.bytosti.size(); i++) {
-            for (Raketa raketa : this.bytosti.get(i).rakety) {
+            for (Raketa raketa : this.bytosti.get(i).getRakety()) {
                 if (this.getHrac().jeZrazka(raketa.getPozicia().getX(), raketa.getPozicia().getY()) && !raketa.jeZnicena()) {
                     raketa.vybuchni();
                     this.getHrac().uberZivot();
@@ -198,13 +198,7 @@ public class HraciaPlocha extends JPanel {
 
     private void odstranZniceneRakety() {
         for (Bytost b : this.bytosti) {
-            Iterator<Raketa> iterator = b.rakety.iterator();
-            while (iterator.hasNext()) {
-                Raketa raketa = iterator.next();
-                if (raketa.jeZnicena()) {
-                    iterator.remove();
-                }
-            }
+            b.odstranZniceneRakety();
         }
     }
 

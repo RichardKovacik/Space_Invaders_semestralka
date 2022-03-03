@@ -2,6 +2,7 @@ package sk.fri.uniza;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,7 +24,11 @@ public class Profil implements Serializable {
     }
 
     public List<Hrac> getZoznamHracov() {
-        return this.zoznamHracov;
+        this.utriedHracovPodlaSkore();
+        return new ArrayList<>(this.zoznamHracov);
+    }
+    private void utriedHracovPodlaSkore() {
+        this.zoznamHracov.sort(Comparator.comparingInt(Hrac::getScore).reversed());
     }
 
     public void setZoznamHracov(List<Hrac> zoznamHracov) {
