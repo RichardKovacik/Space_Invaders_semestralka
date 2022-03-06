@@ -13,9 +13,9 @@ import java.util.Iterator;
  */
 public abstract class Bytost implements Serializable {
     protected transient int zivoty;
-    protected transient BufferedImage obrazok;
     protected transient Pozicia pozicia;
     protected transient boolean jeNaZive;
+    protected transient BufferedImage obrazok;
     protected transient ArrayList<Raketa> rakety;
 
     public Bytost(int x, int y) {

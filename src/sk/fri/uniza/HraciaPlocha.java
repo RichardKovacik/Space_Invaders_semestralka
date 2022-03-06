@@ -24,9 +24,10 @@ public class HraciaPlocha extends JPanel {
     private ArrayList<Bytost> bytosti;
     private Timer timer;
     private Timer timer2;
-    private boolean jeKoniec;
-    private Hra hra;
     private Obtiaznost obtiaznost;
+    private Hra hra;
+    private boolean jeKoniec;
+    private int rychlostStrelby;
 
     public HraciaPlocha(Hra hra, Obtiaznost obtiaznost) {
         this.setSize(SIRKA, VYSKA);
@@ -40,7 +41,7 @@ public class HraciaPlocha extends JPanel {
         this.jeKoniec = false;
         this.initBytosti();
         //caspvec pre strelbu mimozemstanova kazdu sekundu
-        this.timer = new Timer(1000, this.timerListener);
+        this.timer = new Timer(this.rychlostStrelby, this.timerListener);
         this.timer.setRepeats(true);
         this.timer.start();
         //casovac pre odstranovanie znicenych rakiet, kozmickych lodi :)
@@ -77,6 +78,9 @@ public class HraciaPlocha extends JPanel {
         //hrac je vzdy na prvej pozicii v arrayliste bytosti
         this.bytosti.add(new Hrac(200, 430));
 
+        if (this.obtiaznost == null){
+            this.obtiaznost = Obtiaznost.LAHKA;
+        }
         switch (this.obtiaznost) {
             case LAHKA -> this.initLahku();
             case STREDNA -> this.initStrednu();
@@ -84,6 +88,7 @@ public class HraciaPlocha extends JPanel {
         }
     }
     private void initTazku() {
+        this.rychlostStrelby = 500;
         this.bytosti.add(new Mimozemstan(199, 30));
         this.bytosti.add(new Mimozemstan(111, 200));
         this.bytosti.add(new Mimozemstan(200, 245));
@@ -97,6 +102,7 @@ public class HraciaPlocha extends JPanel {
     }
 
     private void initStrednu() {
+        this.rychlostStrelby = 700;
         this.bytosti.add(new Mimozemstan(33, 30));
         this.bytosti.add(new Mimozemstan(100, 200));
         this.bytosti.add(new Mimozemstan(50, 245));
@@ -107,6 +113,7 @@ public class HraciaPlocha extends JPanel {
     }
 
     private void initLahku() {
+        this.rychlostStrelby = 1000;
         this.bytosti.add(new Mimozemstan(20, 30));
         this.bytosti.add(new Mimozemstan(100, 200));
         this.bytosti.add(new Mimozemstan(50, 245));
