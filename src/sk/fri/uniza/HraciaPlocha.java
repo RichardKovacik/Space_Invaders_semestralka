@@ -1,5 +1,6 @@
 package sk.fri.uniza;
 
+import sk.fri.uniza.enums.Obtiaznost;
 import sk.fri.uniza.gui.Hra;
 import sk.fri.uniza.gui.UkoncenieHryOkno;
 
@@ -21,12 +22,11 @@ public class HraciaPlocha extends JPanel {
     public static final int SIRKA = 700;
     public static final int VYSKA = 500;
     private ArrayList<Bytost> bytosti;
-    //caspvec pre strelbu mimozemstanova kazdu sekundu
     private Timer timer;
-    //casovac pre odstranovanie znicenych rakiet, kozmickych lodi :)
     private Timer timer2;
     private boolean jeKoniec;
     private Hra hra;
+    private Obtiaznost obtiaznost;
 
     public HraciaPlocha(Hra hra) {
         this.setSize(SIRKA, VYSKA);
@@ -38,9 +38,11 @@ public class HraciaPlocha extends JPanel {
         this.initBytosti();
         this.hra = hra;
         this.jeKoniec = false;
+        //caspvec pre strelbu mimozemstanova kazdu sekundu
         this.timer = new Timer(1000, this.timerListener);
         this.timer.setRepeats(true);
         this.timer.start();
+        //casovac pre odstranovanie znicenych rakiet, kozmickych lodi :)
         this.timer2 = new Timer(350, this.timerListener2);
         this.timer2.setRepeats(true);
         this.timer2.start();
@@ -68,6 +70,7 @@ public class HraciaPlocha extends JPanel {
     };
 
     //vytvor a inicialzuj bytosti potrebne pre hru
+    //podla obtiaznosti vygeneruje pocet mimozemstanov, urci im rychlost pohybu
     private void initBytosti() {
         this.bytosti = new ArrayList<>();
         //hrac je vzdy na prvej pozicii v arrayliste bytosti

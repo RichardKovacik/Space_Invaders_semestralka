@@ -27,6 +27,7 @@ public class Profil implements Serializable {
         this.utriedHracovPodlaSkore();
         return new ArrayList<>(this.zoznamHracov);
     }
+
     private void utriedHracovPodlaSkore() {
         this.zoznamHracov.sort(Comparator.comparingInt(Hrac::getScore).reversed());
     }

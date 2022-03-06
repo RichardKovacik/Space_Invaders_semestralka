@@ -1,5 +1,7 @@
 package sk.fri.uniza;
 
+import sk.fri.uniza.gui.ZadanieMenaDialog;
+
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  */
 public class TabulkaHracov extends AbstractTableModel {
     private List<Hrac> zoznamHracov;
-    private String[] nazvyStlpcov = {"ID", "Meno", "Skore"};
+    private String[] nazvyStlpcov = {"Poradie", "Meno", "Skore", "Narodnost"};
 
     public TabulkaHracov(List<Hrac> zoznamHracov) {
         this.zoznamHracov = zoznamHracov;
@@ -35,15 +37,13 @@ public class TabulkaHracov extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Hrac hrac = this.zoznamHracov.get(rowIndex);
 
-        switch (columnIndex) {
-            case 0:
-                return rowIndex + 1;
-            case 1:
-                return hrac.getMeno();
-            case 2:
-                return hrac.getScore();
-        }
-        return null;
+        return switch (columnIndex) {
+            case 0 -> rowIndex + 1;
+            case 1 -> hrac.getMeno();
+            case 2 -> hrac.getScore();
+            case 3 -> hrac.getNarodnost().getReprezentacia();
+            default -> null;
+        };
     }
 
 

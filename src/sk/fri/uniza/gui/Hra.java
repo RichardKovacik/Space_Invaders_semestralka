@@ -1,6 +1,7 @@
 package sk.fri.uniza.gui;
 
 import sk.fri.uniza.HraciaPlocha;
+import sk.fri.uniza.enums.Narodnost;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +16,14 @@ public class Hra {
     private HraciaPlocha hraciaPlocha;
     private HraciaPlocha.VykreslovaniePlochy vykreslovacuThread;
 
-    public Hra(String menoHraca) {
+    public Hra(String menoHraca, Narodnost narodnost) {
         this.frame = new JFrame("SPACE INVADERS GAME");
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.hraciaPlocha = new HraciaPlocha(this);
         this.vykreslovacuThread = new HraciaPlocha.VykreslovaniePlochy(this.hraciaPlocha);
         this.frame.add(this.hraciaPlocha);
         this.hraciaPlocha.getHrac().setMeno(menoHraca);
+        this.hraciaPlocha.getHrac().setNarodnost(narodnost);
         this.frame.pack();
         this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);

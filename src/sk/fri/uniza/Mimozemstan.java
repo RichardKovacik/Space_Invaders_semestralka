@@ -32,6 +32,7 @@ public class Mimozemstan extends Bytost {
             System.out.println(e.getMessage());
         }
     }
+
     public void vystrel() {
         this.rakety.add(new Raketa(this.pozicia.getX() - 5, this.pozicia.getY(), false));
     }
@@ -61,6 +62,7 @@ public class Mimozemstan extends Bytost {
             this.zomri();
         }
     }
+
 
     public void kresli(Graphics2D g2d) {
         this.tik();

@@ -1,5 +1,7 @@
 package sk.fri.uniza;
 
+import sk.fri.uniza.enums.Narodnost;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class Hrac extends Bytost {
     private String meno;
     private int score;
+    private Narodnost narodnost;
     private transient boolean vlavo;
     private transient boolean vpravo;
     private transient boolean vystrel;
@@ -154,11 +157,20 @@ public class Hrac extends Bytost {
         this.rakety = rakety;
     }
 
+    public Narodnost getNarodnost() {
+        return this.narodnost;
+    }
+
+    public void setNarodnost(Narodnost narodnost) {
+        this.narodnost = narodnost;
+    }
+
     @Override
     public String toString() {
         return "Hrac{" +
                 "meno='" + this.meno + '\'' +
                 ", score=" + this.score +
+                ", narodnost=" + this.narodnost.getReprezentacia() +
                 '}';
     }
 }

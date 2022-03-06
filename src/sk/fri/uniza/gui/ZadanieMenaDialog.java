@@ -1,33 +1,41 @@
 package sk.fri.uniza.gui;
 
+import sk.fri.uniza.enums.Narodnost;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ZadanieMenaDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTextField menoField;
+    private JComboBox<Narodnost> narodnostiComboBox;
     private String menoHraca;
+    private Narodnost narodnostHraca;
 
     public ZadanieMenaDialog(Menu menu) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener() {
+        this.buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                ZadanieMenaDialog.this.onOK();
                 ZadanieMenaDialog.this.menoHraca = ZadanieMenaDialog.this.menoField.getText();
-                if (menoHraca != null && !menoHraca.isBlank()) {
+                narodnostHraca = (Narodnost)narodnostiComboBox.getSelectedItem();
+                if (ZadanieMenaDialog.this.menoHraca != null && !ZadanieMenaDialog.this.menoHraca.isBlank()) {
                     menu.closeFrame();
-                    Hra hra = new Hra(menoHraca);
+                    new Hra(ZadanieMenaDialog.this.menoHraca, narodnostHraca);
                 }
 
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
+        this.buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -64,4 +72,31 @@ public class ZadanieMenaDialog extends JDialog {
         dispose();
     }
 
+    private void createUIComponents() {
+        Map<Object, Icon> icons = new HashMap<>();
+        icons.put(Narodnost.CZ, new ImageIcon("src/sk/fri/uniza/flags/cz_flag.png"));
+        icons.put(Narodnost.PL, new ImageIcon("src/sk/fri/uniza/flags/pl_flag.png"));
+        icons.put(Narodnost.USA, new ImageIcon("src/sk/fri/uniza/flags/usa_flag.png"));
+        icons.put(Narodnost.DE, new ImageIcon("src/sk/fri/uniza/flags/nem_flag.png"));
+        this.narodnostiComboBox = new JComboBox<>(Narodnost.values());
+        this.narodnostiComboBox.setRenderer(new IconListRenderer(icons));
+
+    }
+
+    public static class IconListRenderer extends DefaultListCellRenderer {
+        private Map<Object, Icon> icons;
+
+        public IconListRenderer(Map<Object, Icon> icons) {
+            this.icons = icons;
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value, int index,
+                                                      boolean isSelected, boolean cellHasFocus) {
+            JLabel label = (JLabel)super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            Icon icon = this.icons.get(value);
+            label.setIcon(icon);
+            return label;
+        }
+    }
 }

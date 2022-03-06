@@ -6,7 +6,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -42,7 +41,6 @@ public class Parser {
                 BufferedReader br = new BufferedReader(new FileReader(PARENT_DIR + PATH_TO_DATA));
                 if (br.readLine() != null) {
                     this.suDataPrazdne = false;
-
                 }
             }
         } catch (IOException e) {
@@ -79,6 +77,7 @@ public class Parser {
             e.printStackTrace();
         } finally {
             try {
+                assert objectInputStream != null;
                 objectInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
