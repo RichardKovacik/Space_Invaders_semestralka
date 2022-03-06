@@ -13,7 +13,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="START GAME"/>
+          <text value="SPUSTI HRU"/>
         </properties>
       </component>
       <component id="a5a09" class="javax.swing.JButton" binding="settingsBtn">
@@ -22,7 +22,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="SETTINGS"/>
+          <text value="NASTAVENIE OBTIAZNOSTI"/>
         </properties>
       </component>
       <component id="4765e" class="javax.swing.JButton" binding="quitBtn">
@@ -31,7 +31,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="QUIT"/>
+          <text value="EXIT"/>
         </properties>
       </component>
       <component id="f69d1" class="javax.swing.JLabel" binding="menuTxt">

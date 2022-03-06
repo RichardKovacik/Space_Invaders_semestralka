@@ -29,7 +29,7 @@ public class ZadanieMenaDialog extends JDialog {
                 narodnostHraca = (Narodnost)narodnostiComboBox.getSelectedItem();
                 if (ZadanieMenaDialog.this.menoHraca != null && !ZadanieMenaDialog.this.menoHraca.isBlank()) {
                     menu.closeFrame();
-                    new Hra(ZadanieMenaDialog.this.menoHraca, narodnostHraca);
+                    new Hra(ZadanieMenaDialog.this.menoHraca, ZadanieMenaDialog.this.narodnostHraca, menu.getZvolenaObtiaznost());
                 }
 
             }

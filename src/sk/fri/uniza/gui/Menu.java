@@ -1,5 +1,7 @@
 package sk.fri.uniza.gui;
 
+import sk.fri.uniza.enums.Obtiaznost;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +19,7 @@ public class Menu {
     private JButton startGamebutton;
     private JButton settingsBtn;
     private JButton quitBtn;
+    private Obtiaznost zvolenaObtiaznost;
 
     public Menu() {
         this.frame = new JFrame("SPACE INVADERS MENU");
@@ -26,12 +29,21 @@ public class Menu {
         this.frame.pack();
         this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
+        this.settingsBtn.addActionListener(e -> this.showSettingDialog());
         this.quitBtn.addActionListener(e -> this.closeFrame());
         this.startGamebutton.addActionListener(e -> this.showDialog());
     }
 
     public void closeFrame() {
         this.frame.dispose();
+    }
+    private void showSettingDialog() {
+        NastavenieObtiaznostiDialog dialog = new NastavenieObtiaznostiDialog();
+        this.zvolenaObtiaznost = dialog.getObtiaznost();
+    }
+
+    public Obtiaznost getZvolenaObtiaznost() {
+        return this.zvolenaObtiaznost;
     }
 
     private void showDialog() {
