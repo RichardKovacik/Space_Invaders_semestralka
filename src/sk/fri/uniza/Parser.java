@@ -1,7 +1,5 @@
 package sk.fri.uniza;
 
-import sk.fri.uniza.gui.Hra;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +11,7 @@ import java.nio.file.Paths;
  * @author richard
  */
 public class Parser {
-    private Profil profil;
+    private ZoznamHracov zoznamHracov;
     private static final String PATH_TO_DATA = "/src/data/hraci.txt";
     private static final String PARENT_DIR = System.getProperty("user.dir");
     private static Parser singleton = null;
@@ -27,7 +25,7 @@ public class Parser {
     }
 
     public Parser() {
-        this.profil = new Profil();
+        this.zoznamHracov = new ZoznamHracov();
         Path path = Paths.get(PARENT_DIR + PATH_TO_DATA);
         try {
             Files.createDirectories(Paths.get(PARENT_DIR + "/src/data"));
@@ -49,11 +47,11 @@ public class Parser {
     }
 
     public void ulozHracaDoSub(Hrac hrac) {
-        this.profil.pridajHraca(hrac);
+        this.zoznamHracov.pridajHraca(hrac);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(PARENT_DIR, PATH_TO_DATA));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(this.profil);
+            objectOutputStream.writeObject(this.zoznamHracov);
             objectOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,8 +68,8 @@ public class Parser {
         try (FileInputStream in = new FileInputStream(PARENT_DIR + PATH_TO_DATA)) {
             objectInputStream = new ObjectInputStream(in);
             Object o = objectInputStream.readObject();
-            if (o instanceof Profil) {
-                this.setProfil((Profil)o);
+            if (o instanceof ZoznamHracov) {
+                this.setZoznamHracov((ZoznamHracov)o);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -86,11 +84,11 @@ public class Parser {
 
     }
 
-    public Profil getProfil() {
-        return this.profil;
+    public ZoznamHracov getZoznamHracov() {
+        return this.zoznamHracov;
     }
 
-    public void setProfil(Profil profil) {
-        this.profil = profil;
+    public void setZoznamHracov(ZoznamHracov zoznamHracov) {
+        this.zoznamHracov = zoznamHracov;
     }
 }

@@ -10,10 +10,10 @@ import java.util.List;
  *
  * @author richard
  */
-public class Profil implements Serializable {
+public class ZoznamHracov implements Serializable {
     private List<Hrac> zoznamHracov;
 
-    public Profil() {
+    public ZoznamHracov() {
         this.zoznamHracov = new ArrayList<>();
     }
 
@@ -30,9 +30,5 @@ public class Profil implements Serializable {
 
     private void utriedHracovPodlaSkore() {
         this.zoznamHracov.sort(Comparator.comparingInt(Hrac::getScore).reversed());
-    }
-
-    public void setZoznamHracov(List<Hrac> zoznamHracov) {
-        this.zoznamHracov = zoznamHracov;
     }
 }

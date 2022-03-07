@@ -53,7 +53,7 @@ public class UkoncenieHryOkno {
         });
     }
     private void initTabulkaHracov() {
-        TabulkaHracov tabulkaHracov = new TabulkaHracov(this.parser.getProfil().getZoznamHracov());
+        TabulkaHracov tabulkaHracov = new TabulkaHracov(this.parser.getZoznamHracov().getZoznamHracov());
         this.table1.setModel(tabulkaHracov);
 
     }

@@ -105,7 +105,6 @@ public class Hrac extends Bytost {
         if (this.zivoty <= 0) {
             this.zomri();
         }
-
     }
 
     public void kresli(Graphics2D g2d) {
@@ -130,32 +129,16 @@ public class Hrac extends Bytost {
         this.score = score;
     }
 
-    public boolean isVlavo() {
-        return this.vlavo;
-    }
-
     public void setVlavo(boolean vlavo) {
         this.vlavo = vlavo;
-    }
-
-    public boolean isVpravo() {
-        return this.vpravo;
     }
 
     public void setVpravo(boolean vpravo) {
         this.vpravo = vpravo;
     }
 
-    public boolean isVystrel() {
-        return this.vystrel;
-    }
-
     public void setVystrel(boolean vystrel) {
         this.vystrel = vystrel;
-    }
-
-    public void setRakety(ArrayList<Raketa> rakety) {
-        this.rakety = rakety;
     }
 
     public Narodnost getNarodnost() {
