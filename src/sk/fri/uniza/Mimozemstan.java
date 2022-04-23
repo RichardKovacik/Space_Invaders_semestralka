@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Trieda mimozemstan je potomkom triedy bytost, sluzi na reprezentaciu mimozemstana v hre
  * @author richard
  */
 public class Mimozemstan extends Bytost {
@@ -16,6 +16,11 @@ public class Mimozemstan extends Bytost {
     private boolean vpravo;
     private int rychlost;
 
+    /**
+     * Konstruktor vytvori mimozemstana na zadanej pozicii
+     * @param x pozicia mimozemstana
+     * @param y pozicia mimozemstana
+     */
     public Mimozemstan(int x, int y) {
         super(x, y);
         this.jeNaZive = true;
@@ -25,7 +30,11 @@ public class Mimozemstan extends Bytost {
         this.initObrazok();
     }
 
-    private void initObrazok() {
+    /**
+     * metoda inicializuje obrazok mimozestana, ktory sa bude zobrazovat na hracej ploche
+     */
+    @Override
+    public void initObrazok() {
         try {
             this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/alien.png"));
         } catch (IOException e) {
@@ -33,12 +42,22 @@ public class Mimozemstan extends Bytost {
         }
     }
 
+    /**
+     * metoda zabezpeci vystrelenie rakety mimozemstanom
+     */
+    @Override
     public void vystrel() {
-        this.rakety.add(new Raketa(this.pozicia.getX() - 5, this.pozicia.getY(), false));
+        if (this.jeNaZive) {
+            this.rakety.add(new Raketa(this.pozicia.getX() - 5, this.pozicia.getY(), false));
+        }
     }
 
+    /**
+     * metoda tik vykonava update pozicie daneho mimozemstana a kotroluje ci je nazive
+     */
     //update pozicie mimozemstana
-    private void tik() {
+    @Override
+    public void tik() {
         // skotroluj pravy okraj
         if (Math.abs(this.pozicia.getX() - HraciaPlocha.SIRKA) <= 20) {
             this.vlavo = true;
@@ -64,7 +83,12 @@ public class Mimozemstan extends Bytost {
     }
 
 
-    public void kresli(Graphics2D g2d) {
+    /**
+     * metoda vykresli daneho mimozemstana s aktualnymi suradnicami na hraciu plochu
+     * @param g2d sluzi na vykreslovanie na hraciu plochu
+     */
+    @Override
+    public void zobraz(Graphics2D g2d) {
         this.tik();
         g2d.drawImage(this.obrazok, this.pozicia.getX(), this.pozicia.getY(), 20, 20, null);
     }

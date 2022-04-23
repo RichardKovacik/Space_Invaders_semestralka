@@ -11,6 +11,7 @@ import java.util.Timer;
  * User: richard
  * Date: 27. 2. 2022
  * Time: 15:54
+ * hlavna trieda v ktorej sa spusta apka
  */
 public class App {
 

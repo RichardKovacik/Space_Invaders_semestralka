@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 27. 2. 2022 - 15:54
  *
- * @author richa
+ * @author richard
  */
 public class TabulkaHracov extends AbstractTableModel {
     private List<Hrac> zoznamHracov;

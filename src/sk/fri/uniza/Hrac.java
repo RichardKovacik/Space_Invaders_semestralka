@@ -9,12 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * trieda hrac je potomkom triedy Bytost a reprezentuje hraca v hre
  * @author richard
  */
 public class Hrac extends Bytost {
@@ -23,11 +21,16 @@ public class Hrac extends Bytost {
     private Narodnost narodnost;
     private transient boolean vlavo;
     private transient boolean vpravo;
-    private transient boolean vystrel;
+    private transient boolean jeVystrel;
     private transient Timer timer;
     //zobrazenie zivotov (3 srdiecka)
     private transient BufferedImage[] srdiecka;
 
+    /**
+     * konstruktor vytvori hraca na zadanej pozici a nastavi potrebne atributy
+     * @param x pozicia hraca
+     * @param y pozicia hraca
+     */
     public Hrac(int x, int y) {
         super(x, y);
         this.zivoty = 3;
@@ -41,15 +44,35 @@ public class Hrac extends Bytost {
         this.timer.setRepeats(true);
         this.timer.start();
     }
+
+    /**
+     * prepisana abstraktna metoda z triedy Bytost, kotara zabezpeci vystrel hraca
+     */
+    @Override
+    void vystrel() {
+        //pokial hrac stalcil medzernik tak sa vykona vystrel
+        if (this.jeVystrel) {
+            this.rakety.add(new Raketa(this.pozicia.getX() + 5, this.pozicia.getY(), true));
+        }
+        this.jeVystrel = false;
+    }
+
+    /**
+     * dany listener sa vykona kazdu pol sekundy a zavola metodu vystrel
+     */
     // skotroluj vystrel kazdych 500 milis, hrac striekla pomocou stalcanie P/p na klavesnici
     private transient ActionListener timerListener = evt -> {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Hrac.this.skontrolujVystrel();
+                Hrac.this.vystrel();
             }
         });
     };
 
+    /**
+     *  metoda zobrazi zivoty hraca v podobe obrazkov srdiecka
+     * @param g2d pomoocu ktoreho vykreslujem objekty na hraciu plochu
+     */
     public void kresliSrdcia(Graphics2D g2d) {
         int x = 610;
         for (int i = 0; i < this.srdiecka.length; i++) {
@@ -60,6 +83,9 @@ public class Hrac extends Bytost {
         }
     }
 
+    /**
+     * metoda icializuje pole obrazkov reprezentujucich zivot hraca
+     */
     private void initObrazkyZivotov() {
         for (int i = 0; i < this.srdiecka.length; i++) {
             try {
@@ -70,7 +96,11 @@ public class Hrac extends Bytost {
         }
     }
 
-    private void initObrazok() {
+    /**
+     * metoda inicializuje obrazok ktory bude reprezentovat hraca na hracej ploche
+     */
+    @Override
+    public void initObrazok() {
         try {
             this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/player.png"));
         } catch (IOException e) {
@@ -78,6 +108,9 @@ public class Hrac extends Bytost {
         }
     }
 
+    /**
+     * metoda uberie zivoty hracovi a zabezpeci zmiznutie prave jedneho srdiecka z obrazovky
+     */
     public void uberZivot() {
         if (this.zivoty > 0) {
             this.zivoty--;
@@ -85,16 +118,12 @@ public class Hrac extends Bytost {
         }
     }
 
-    public void skontrolujVystrel() {
-        if (this.vystrel) {
-            this.rakety.add(new Raketa(this.pozicia.getX() + 5, this.pozicia.getY(), true));
-        }
-        this.vystrel = false;
-
-    }
-
+    /**
+     * metoda tik updatuje poziciu hraca
+     */
+    @Override
     public void tik() {
-        //update poziciu hraca
+        //update pozicie hraca
         int stareX = this.pozicia.getX();
         if (this.vlavo && stareX - 3 > 0) {
             this.pozicia.setX(this.pozicia.getX() - 3);
@@ -107,7 +136,12 @@ public class Hrac extends Bytost {
         }
     }
 
-    public void kresli(Graphics2D g2d) {
+    /**
+     * metoda zobrazi(vykresli) hraca na aktualnej pozicii na hraciu plochu
+     * @param g2d parameter
+     */
+    @Override
+    public void zobraz(Graphics2D g2d) {
         this.tik();
         this.kresliSrdcia(g2d);
         g2d.drawImage(this.obrazok, this.pozicia.getX(), this.pozicia.getY(), 20, 20, null);
@@ -138,7 +172,7 @@ public class Hrac extends Bytost {
     }
 
     public void setVystrel(boolean vystrel) {
-        this.vystrel = vystrel;
+        this.jeVystrel = vystrel;
     }
 
     public Narodnost getNarodnost() {

@@ -15,13 +15,14 @@ import java.util.Random;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * V triede Hracia plocha sa vykonava hlavna logika hry
  * @author richard
  */
 public class HraciaPlocha extends JPanel {
     public static final int SIRKA = 700;
     public static final int VYSKA = 500;
     private ArrayList<Bytost> bytosti;
+    private ArrayList<Raketa> rakety;
     private Timer timer;
     private Timer timer2;
     private Obtiaznost obtiaznost;
@@ -29,7 +30,14 @@ public class HraciaPlocha extends JPanel {
     private boolean jeKoniec;
     private int rychlostStrelby;
 
+    /**
+     * Konstruktor vytvori novu hraciu plochu so zadanou hrou a obtiaznostou
+     * @param hra znamena akutalnu hru
+     * @param obtiaznost hry
+     */
     public HraciaPlocha(Hra hra, Obtiaznost obtiaznost) {
+        this.rakety = new ArrayList<>();
+        //deafultne nastavi sirku a vysku hracej plochy v pixeloch
         this.setSize(SIRKA, VYSKA);
         this.setPreferredSize(new Dimension(SIRKA, VYSKA));
         this.setBackground(Color.BLACK);
@@ -40,7 +48,8 @@ public class HraciaPlocha extends JPanel {
         this.hra = hra;
         this.jeKoniec = false;
         this.initBytosti();
-        //caspvec pre strelbu mimozemstanova kazdu sekundu
+        //casovac pre strelbu mimozemstanova kazdu sekundu
+        //urcuje interval v akom sa nahodne stridaju mimozemstanie pri strelbe
         this.timer = new Timer(this.rychlostStrelby, this.timerListener);
         this.timer.setRepeats(true);
         this.timer.start();
@@ -50,6 +59,9 @@ public class HraciaPlocha extends JPanel {
         this.timer2.start();
     }
 
+    /**
+     * kazdych 350 milisekund sa vykona dany listener, ktory odstrani z hracej plochy bytosti, ktore nie su uz na zive a znicene rakety
+     */
     //kazdych 250 milisekud odstranim znicene rakety a znicene mimozemske lode z listov
     private ActionListener timerListener2 = evt -> {
         //...Perform a task...
@@ -61,7 +73,10 @@ public class HraciaPlocha extends JPanel {
         });
     };
 
-    //kazdu sekundu vystreli nahodny mimozemstan svoju raketu
+    /**
+     * listener sa opakuje v pravidelnom intervale ktoreho hodnota je ulozena v atribute rychlost strelbz
+     */
+    //napriklad ak bude rychlostStrelby = 1000 => kazdu sekundu vystreli nahdony mimozemstan raketu
     private ActionListener timerListener = evt -> {
         //...Perform a task...
         SwingUtilities.invokeLater(new Runnable() {
@@ -200,19 +215,17 @@ public class HraciaPlocha extends JPanel {
 
     private void kresliHraca(Graphics2D g2d) {
         if (this.bytosti.get(0) instanceof Hrac) {
-            ((Hrac) this.bytosti.get(0)).kresli(g2d);
+            ((Hrac) this.bytosti.get(0)).zobraz(g2d);
         }
     }
 
     private void kresliRakety(Graphics2D g2d) {
         for (Bytost b : this.bytosti) {
-            if (b.jeNaZive) {
                 for (Raketa r : b.rakety) {
                     if (!r.jeZnicena() || r.jeExplozia()) {
                         r.kresli(g2d);
                     }
                 }
-            }
         }
     }
 
@@ -228,12 +241,15 @@ public class HraciaPlocha extends JPanel {
     }
 
     //ostranim mrtvych mimozemstanov z listu
+    //nebudem ich uz kreslit
     private void odstranMimozemstanov() {
         Iterator<Bytost> iterator = this.bytosti.iterator();
         while (iterator.hasNext()) {
              Bytost bytost = iterator.next();
-             if (bytost instanceof Mimozemstan && !bytost.jeNaZive){
-                 iterator.remove();
+             //pokial je typu mimozemstan a nema z hre uz ziadne rakety odstranim ho
+             // hra je ukoncena ak sa znici posledna raketa posledneho mimozemstana
+             if (bytost instanceof Mimozemstan && bytost.getRakety().size() == 0 && !bytost.jeNaZive){
+                iterator.remove();
              }
         }
     }
@@ -247,7 +263,7 @@ public class HraciaPlocha extends JPanel {
     private void kresliMimozemstanov(Graphics2D g2d) {
         for (Bytost b : this.bytosti) {
             if (b.jeNaZive && b instanceof Mimozemstan) {
-                ((Mimozemstan) b).kresli(g2d);
+                ((Mimozemstan) b).zobraz(g2d);
             }
         }
     }
