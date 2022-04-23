@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Treida Raketa rerezentuje rakety c hre
  * @author richard
  */
 public class Raketa {
@@ -20,6 +20,12 @@ public class Raketa {
     private boolean jeHracova;
     private boolean jeExplozia;
 
+    /**
+     * Konstruktor vytvori novu raketu na danej pozici a urci podla parametra ci je hracova alebo nie
+     * @param x suradnica rakety
+     * @param y suradnia rakety
+     * @param jeHracova ak je hracova - true inak false
+     */
     public Raketa(int x, int y , boolean jeHracova) {
         this.pozicia = new Pozicia(x, y);
         this.initObrazok();
@@ -28,14 +34,9 @@ public class Raketa {
         this.jeHracova = jeHracova;
     }
 
-    private ActionListener timerListener = evt -> {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                Raketa.this.vybuchni();
-            }
-        });
-    };
-
+    /**
+     * metoda incializuje obrazok rakety
+     */
     private void initObrazok() {
         try {
             this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/bomb.png"));
@@ -44,6 +45,9 @@ public class Raketa {
         }
     }
 
+    /**
+     * metoda incializuje obrazok explozie
+     */
     private void initObrazokExplozie() {
         try {
             this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/explosion.png"));
@@ -52,12 +56,18 @@ public class Raketa {
         }
     }
 
+    /**
+     * meotoda nastavi atributy jeZnicena a jeExplozia na true a inicalizuje obrazok explozie
+     */
     public void vybuchni() {
         this.jeZnicena = true;
         this.jeExplozia = true;
         this.initObrazokExplozie();
     }
 
+    /**
+     * metoda updatuje pozcie rakety a znici raketu pokial prekrocila hranice hracej plochy
+     */
     //update atributy rakety
     private void tik() {
         if (!this.jeZnicena) {
@@ -73,6 +83,10 @@ public class Raketa {
         }
     }
 
+    /**
+     * metoda zobrazi raketu alebo exploziu na aktualnej pozicii
+     * @param g2d sluzi na vykreslovanie 2D objektov
+     */
     public void kresli(Graphics2D g2d) {
         this.tik();
         if (!this.jeZnicena) {
@@ -82,36 +96,16 @@ public class Raketa {
         }
     }
 
-    public BufferedImage getObrazok() {
-        return this.obrazok;
-    }
-
-    public void setObrazok(BufferedImage obrazok) {
-        this.obrazok = obrazok;
-    }
-
     public Pozicia getPozicia() {
         return this.pozicia;
-    }
-
-    public void setPozicia(Pozicia pozicia) {
-        this.pozicia = pozicia;
     }
 
     public boolean jeZnicena() {
         return this.jeZnicena;
     }
 
-    public void setJeZnicena(boolean jeZnicena) {
-        this.jeZnicena = jeZnicena;
-    }
-
     public boolean jeExplozia() {
         return this.jeExplozia;
-    }
-
-    public void setJeExplozia(boolean jeExplozia) {
-        this.jeExplozia = jeExplozia;
     }
 
 }
