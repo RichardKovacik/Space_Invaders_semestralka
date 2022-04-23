@@ -2,7 +2,7 @@ package sk.fri.uniza.enums;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Trieda narodnost reprezentuje narodnst daneho hraca
  * @author richard
  */
 public enum Narodnost {
@@ -14,7 +14,8 @@ public enum Narodnost {
     private String reprezentacia;
 
     /**
-     * @param reprezentacia danej narodnosti klienta ako text
+     * nastavi textovu reprezentaciu danej obtiaznosti
+     * @param reprezentacia danej narodnosti hraca ako text
      */
     Narodnost(String reprezentacia) {
         this.reprezentacia = reprezentacia;

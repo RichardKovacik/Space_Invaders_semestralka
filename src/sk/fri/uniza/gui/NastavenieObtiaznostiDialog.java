@@ -6,6 +6,10 @@ import sk.fri.uniza.enums.Obtiaznost;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * Trieda reprezentuje dialog pre nastavenie obtiaznosti hry
+ * @author Richard Kovacik
+ */
 public class NastavenieObtiaznostiDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
@@ -14,10 +18,15 @@ public class NastavenieObtiaznostiDialog extends JDialog {
     private JComboBox comboBox1;
     private Obtiaznost obtiaznost;
 
+    /**
+     * Konstruktor vytvori nove dialog okno pre zadavanie mena hraca a narodnosti hraca
+     */
     public NastavenieObtiaznostiDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+
+        //vygenerovany kod intelijji idea
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,10 +72,17 @@ public class NastavenieObtiaznostiDialog extends JDialog {
         dispose();
     }
 
+    /**
+     * meotda vytvori combo box s hodnotami enumu Obtiaznost
+     */
     private void createUIComponents() {
         this.comboBox1 = new JComboBox<>(Obtiaznost.values());
     }
 
+    /**
+     * metoda vrati danu obtiaznost
+     * @return zadana obtiaznost
+     */
     public Obtiaznost getObtiaznost() {
         return this.obtiaznost;
     }

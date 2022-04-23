@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Trieda repezentuje okno kotre sa zobrazi po ukonceni hry(pokial hrac zabije vsetkych mimozems. alebo zomrie)
  * @author richa
  */
 public class UkoncenieHryOkno {
@@ -22,6 +22,11 @@ public class UkoncenieHryOkno {
     private JButton spatBtn;
     private JButton ukonciHruBtn;
 
+    /**
+     * Konstruktor vytvori nove okno po ukonceni hry a nastavu jednotlive prvky a objekty okna
+     * @param hra aktualna
+     * @param hrac aktulany
+     */
     public UkoncenieHryOkno(Hra hra, Hrac hrac) {
         this.frame = new JFrame("TABULKA VYSLEDKOV");
         this.frame.add(this.mainPanel);
@@ -34,9 +39,10 @@ public class UkoncenieHryOkno {
         this.parser.nacitajHracovZoSuboru();
         //uloz aktualneho hraca
         this.parser.ulozHracaDoSub(hrac);
-        //nacitaj znova vsetkych hracov uz aj s novym do tabulky
+        //nacitaj znova vsetkych hracov uz aj s aktaulnym hracom do tabulky
         this.parser.nacitajHracovZoSuboru();
         this.initTabulkaHracov();
+        //pri stalceni tlacitdla spat sa opat zobrazi prve okno menu
         this.spatBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +51,7 @@ public class UkoncenieHryOkno {
                 new Menu();
             }
         });
+        //pri stalceni tlacitdla ukoncenie hry sa ukonci aplikacia
         this.ukonciHruBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,6 +59,10 @@ public class UkoncenieHryOkno {
             }
         });
     }
+
+    /**
+     * meotoda vytvori tabulku hracov s hracmi nacitancyh zo suboru, cize takych ktori uz hrali hru
+     */
     private void initTabulkaHracov() {
         TabulkaHracov tabulkaHracov = new TabulkaHracov(this.parser.getZoznamHracov().getZoznamHracov());
         this.table1.setModel(tabulkaHracov);

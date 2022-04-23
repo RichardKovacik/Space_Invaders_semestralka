@@ -12,10 +12,16 @@ public enum Obtiaznost {
 
     private String reprezentacia;
 
+    /**
+     * nastavi textovu reprezentaciu danej obtiaznosti
+     * @param reprezentacia danej obtiaznosti hraca ako text
+     */
     Obtiaznost(String reprezentacia) {
         this.reprezentacia = reprezentacia;
     }
-
+    /**
+     * @return textovu reprezentaciu danej narodnsti
+     */
     public String getReprezentacia() {
         return this.reprezentacia;
     }

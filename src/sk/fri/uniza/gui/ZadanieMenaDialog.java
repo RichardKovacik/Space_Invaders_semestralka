@@ -8,6 +8,10 @@ import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Trieda repezentuje dialogove okno pre zadavanie mena a narodnosti hraca
+ * @author Richard Kovacik
+ */
 public class ZadanieMenaDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
@@ -17,6 +21,10 @@ public class ZadanieMenaDialog extends JDialog {
     private String menoHraca;
     private Narodnost narodnostHraca;
 
+    /**
+     * Konstruktor vytvori nove dialogove okno pre zadavanie mena hraca a nastavi vsetky prvky vramci okna
+     * @param menu aktualne
+     */
     public ZadanieMenaDialog(Menu menu) {
         setContentPane(contentPane);
         setModal(true);
@@ -27,6 +35,7 @@ public class ZadanieMenaDialog extends JDialog {
                 ZadanieMenaDialog.this.onOK();
                 ZadanieMenaDialog.this.menoHraca = ZadanieMenaDialog.this.menoField.getText();
                 narodnostHraca = (Narodnost)narodnostiComboBox.getSelectedItem();
+                //kotrla ci zadanne meno nie je null alebo prazdny String
                 if (ZadanieMenaDialog.this.menoHraca != null && !ZadanieMenaDialog.this.menoHraca.isBlank()) {
                     menu.closeFrame();
                     new Hra(ZadanieMenaDialog.this.menoHraca, ZadanieMenaDialog.this.narodnostHraca, menu.getZvolenaObtiaznost());
@@ -34,6 +43,7 @@ public class ZadanieMenaDialog extends JDialog {
 
             }
         });
+        //metody vygenerovane Itelijji
 
         this.buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +82,9 @@ public class ZadanieMenaDialog extends JDialog {
         dispose();
     }
 
+    /**
+     * metoda vytvori combox s hodnotami enumu Naodnost a ku kazdej narodnosti priradi jeden obrazok
+     */
     private void createUIComponents() {
         Map<Object, Icon> icons = new HashMap<>();
         icons.put(Narodnost.CZ, new ImageIcon("src/sk/fri/uniza/flags/cz_flag.png"));
@@ -83,9 +96,16 @@ public class ZadanieMenaDialog extends JDialog {
 
     }
 
+    /**
+     * Trieda  kotra zebepecuje renderovanie(vykreslovanie) obrazkov vramci JComboBoxu
+     */
     public static class IconListRenderer extends DefaultListCellRenderer {
         private Map<Object, Icon> icons;
 
+        /**
+         * Konstruktor vytvori novy IconListRenderer a inicalizuje atribut icons
+         * @param icons mapa ktora obsahuje dve hodnoty <narodnost,obrazok_narodnsoti
+         */
         public IconListRenderer(Map<Object, Icon> icons) {
             this.icons = icons;
         }

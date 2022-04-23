@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Trieda Menu zobrazuje menu okno s danymi prvkami
  * @author richard
  */
 public class Menu {
@@ -21,6 +21,9 @@ public class Menu {
     private JButton quitBtn;
     private Obtiaznost zvolenaObtiaznost;
 
+    /**
+     * Konstruktor vytvri nove menu okno o danej velkosti
+     */
     public Menu() {
         this.frame = new JFrame("SPACE INVADERS MENU");
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,18 +37,32 @@ public class Menu {
         this.startGamebutton.addActionListener(e -> this.showDialog());
     }
 
+    /**
+     * metoda zavrie dane menu okno
+     */
     public void closeFrame() {
         this.frame.dispose();
     }
+
+    /**
+     * metoda zobrazi dialog s nastaveniami obtiaznosti
+     */
     private void showSettingDialog() {
         NastavenieObtiaznostiDialog dialog = new NastavenieObtiaznostiDialog();
         this.zvolenaObtiaznost = dialog.getObtiaznost();
     }
 
+    /**
+     * meotda vrati zvolenu obtiaznost
+     * @return zvolena obtiaznost
+     */
     public Obtiaznost getZvolenaObtiaznost() {
         return this.zvolenaObtiaznost;
     }
 
+    /**
+     * metoda zobrazi dialog pre zadavanie mena hraca
+     */
     private void showDialog() {
         new ZadanieMenaDialog(this);
     }
