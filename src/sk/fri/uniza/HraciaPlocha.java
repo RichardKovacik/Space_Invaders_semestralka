@@ -22,7 +22,6 @@ public class HraciaPlocha extends JPanel {
     public static final int SIRKA = 700;
     public static final int VYSKA = 500;
     private ArrayList<Bytost> bytosti;
-    private ArrayList<Raketa> rakety;
     private Timer timer;
     private Timer timer2;
     private Obtiaznost obtiaznost;
@@ -36,7 +35,6 @@ public class HraciaPlocha extends JPanel {
      * @param obtiaznost hry
      */
     public HraciaPlocha(Hra hra, Obtiaznost obtiaznost) {
-        this.rakety = new ArrayList<>();
         //deafultne nastavi sirku a vysku hracej plochy v pixeloch
         this.setSize(SIRKA, VYSKA);
         this.setPreferredSize(new Dimension(SIRKA, VYSKA));
