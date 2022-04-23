@@ -15,7 +15,7 @@ import java.util.Random;
 
 /**
  * 27. 2. 2022 - 15:54
- * V triede Hracia plocha sa vykonava hlavna logika hry
+ * V triede Hracia plocha sa vykonava hlavna logika hry a vykresluju sa vsetky objekty vramci hracej plochy
  * @author richard
  */
 public class HraciaPlocha extends JPanel {
@@ -74,9 +74,9 @@ public class HraciaPlocha extends JPanel {
     };
 
     /**
-     * listener sa opakuje v pravidelnom intervale ktoreho hodnota je ulozena v atribute rychlost strelbz
+     * listener sa opakuje v pravidelnom intervale ktoreho hodnota je ulozena v atribute rychlostStrelby
      */
-    //napriklad ak bude rychlostStrelby = 1000 => kazdu sekundu vystreli nahdony mimozemstan raketu
+    //napriklad ak bude rychlostStrelby = 1000 => kazdu sekundu vystreli nahodny mimozemstan raketu
     private ActionListener timerListener = evt -> {
         //...Perform a task...
         SwingUtilities.invokeLater(new Runnable() {
@@ -86,6 +86,9 @@ public class HraciaPlocha extends JPanel {
         });
     };
 
+    /**
+     * metoda vytvori bytosti na zaklade zvolenej obtiaznosti
+     */
     //vytvor a inicialzuj bytosti potrebne pre hru
     //podla obtiaznosti vygeneruje pocet mimozemstanov, urci im rychlost pohybu
     private void initBytosti() {
@@ -102,6 +105,10 @@ public class HraciaPlocha extends JPanel {
             case TAZKA -> this.initTazku();
         }
     }
+
+    /**
+     * incializuje objekty mimozemstanov a rychlost strelby mimozemstanov pre tazku obtiaznost
+     */
     private void initTazku() {
         this.rychlostStrelby = 500;
         this.bytosti.add(new Mimozemstan(199, 30));
@@ -116,6 +123,9 @@ public class HraciaPlocha extends JPanel {
         this.bytosti.add(new Mimozemstan(128, 130));
     }
 
+    /**
+     * incializuje objekty mimozemstanov a rychlost strelby mimozemstanov pre strednu obtiaznost
+     */
     private void initStrednu() {
         this.rychlostStrelby = 700;
         this.bytosti.add(new Mimozemstan(33, 30));
@@ -127,6 +137,9 @@ public class HraciaPlocha extends JPanel {
         this.bytosti.add(new Mimozemstan(250, 210));
     }
 
+    /**
+     * incializuje objekty mimozemstanov a rychlost strelby mimozemstanov pre lahku obtiaznost
+     */
     private void initLahku() {
         this.rychlostStrelby = 1000;
         this.bytosti.add(new Mimozemstan(20, 30));
@@ -136,6 +149,10 @@ public class HraciaPlocha extends JPanel {
         this.bytosti.add(new Mimozemstan(300, 300));
     }
 
+    /**
+     * metoda vykresluje vsetky objekty hracej plochy
+     * @param g vykresluje objekty na aktualny panel(hraciu plochu)
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -147,9 +164,13 @@ public class HraciaPlocha extends JPanel {
         this.kresliRakety(g2d);
         this.zobrazInfoHraca(g2d);
     }
+
+    /**
+     * metoda kotroluje zrazky rakiet s bytostami
+     */
     //update vsetky objekty na hracej ploche
     private void tik() {
-        //kotrola zrazky rakety s mimozemstanom
+        //kotrola zrazky hracovej rakety s mimozemstanom
         for (Bytost b : this.bytosti) {
             if (b.jeNaZive && b instanceof Mimozemstan) {
                 for (Raketa r : this.getHrac().getRakety()) {
@@ -181,6 +202,10 @@ public class HraciaPlocha extends JPanel {
         }
     }
 
+    /**
+     * metoda zobrazuje meno hraca na danej pozici na hracej ploche
+     * @param g vykresluje objekty na hraciu plochu
+     */
     private void zobrazMenoHraca(Graphics g) {
         Font font = new Font("Courier New",20,20);
         g.setFont(font);
@@ -188,6 +213,10 @@ public class HraciaPlocha extends JPanel {
         g.drawString("Hrac: "+this.getHrac().getMeno(), 20, 480);
     }
 
+    /**
+     * metoda zobrazuje skore hraca na danej pozici na hracej ploche
+     * @param g vykresluje objekty na hraciu plochu
+     */
     private void zobrazSkoreHraca(Graphics g) {
         Font font = new Font("Courier New",20,20);
         g.setFont(font);
@@ -195,6 +224,10 @@ public class HraciaPlocha extends JPanel {
         g.drawString("Skore: "+this.getHrac().getScore(), 300, 20);
     }
 
+    /**
+     * metoda zobrazuje zivoty hraca na danej pozici na hracej ploche
+     * @param g vykresluje objekty na hraciu plochu
+     */
     private void zobrazZivotyHraca(Graphics g) {
         Font font = new Font("Courier New",20,20);
         g.setFont(font);
@@ -202,33 +235,52 @@ public class HraciaPlocha extends JPanel {
         g.drawString("Zivoty: ", 520, 480);
     }
 
+    /**
+     * metoda zobrazuje informacie hraca na danej pozici na hracej ploche
+     * @param g vykresluje objekty na hraciu plochu
+     */
     private void zobrazInfoHraca(Graphics g) {
         this.zobrazMenoHraca(g);
         this.zobrazZivotyHraca(g);
         this.zobrazSkoreHraca(g);
     }
 
+    /**
+     * metoda zobrazuje informacie hraca na danej pozici na hracej ploche
+     * @param g2d vyjresluje 2D objetky na hraciu plochu
+     */
     private void kresliCiaru(Graphics2D g2d) {
         g2d.setColor(Color.green);
         g2d.drawLine(0, 450, 700, 450);
     }
 
+    /**
+     * metoda zobrazuje 2D obrazok hraca na danej pozici na hracej ploche
+     * @param g2d vyjresluje 2D obejekty na hraciu plochu
+     */
     private void kresliHraca(Graphics2D g2d) {
         if (this.bytosti.get(0) instanceof Hrac) {
             ((Hrac) this.bytosti.get(0)).zobraz(g2d);
         }
     }
 
+    /**
+     * metoda zobrazuje rakety bytostiam na danej pozici na hracej ploche
+     * @param g2d vyjresluje 2D obejtky na hraciu plochu
+     */
     private void kresliRakety(Graphics2D g2d) {
         for (Bytost b : this.bytosti) {
-                for (Raketa r : b.rakety) {
-                    if (!r.jeZnicena() || r.jeExplozia()) {
-                        r.kresli(g2d);
-                    }
+            for (Raketa r : b.rakety) {
+                if (!r.jeZnicena() || r.jeExplozia()) {
+                    r.kresli(g2d);
                 }
+            }
         }
     }
 
+    /**
+     * metoda vystreli raketu nahodnemu mimozemstanovi
+     */
     private void vystrelRaketuNahodnemuMimozemastanovi() {
         //vyber random mimozemstana z listu bytosti ktory vystreli raketu
         Random generator = new Random();
@@ -240,6 +292,9 @@ public class HraciaPlocha extends JPanel {
         m.vystrel();
     }
 
+    /**
+     * metoda odstrani mimozemstanov, ktori nie su uz na zive z listu bytosti
+     */
     //ostranim mrtvych mimozemstanov z listu
     //nebudem ich uz kreslit
     private void odstranMimozemstanov() {
@@ -254,12 +309,19 @@ public class HraciaPlocha extends JPanel {
         }
     }
 
+    /**
+     * metoda odstrani znicene rakety z hracej plochy
+     */
     private void odstranZniceneRakety() {
         for (Bytost b : this.bytosti) {
             b.odstranZniceneRakety();
         }
     }
 
+    /**
+     * metoda vykresluje vsetkych mimozemstanov ,ktorsi su nazive
+     * @param g2d vyjresluje  objekty na hraciu plochu
+     */
     private void kresliMimozemstanov(Graphics2D g2d) {
         for (Bytost b : this.bytosti) {
             if (b.jeNaZive && b instanceof Mimozemstan) {
@@ -268,27 +330,42 @@ public class HraciaPlocha extends JPanel {
         }
     }
 
+    /**
+     * meotda vrati hraca z listu bytosti
+     * @return hrac
+     */
     public Hrac getHrac() {
         return (Hrac) this.bytosti.get(0);
     }
 
+    /**
+     * Trieda VykreslovaniePlochy prekresluje nuestale v jednom vlakne(threade) objekty hracej plochy
+     */
     public static class VykreslovaniePlochy extends Thread {
         private HraciaPlocha plocha;
 
+        /**
+         * Konstruktor vytvori novy vykreslovacie vlakno hracej plochy
+         * @param plocha
+         */
         public VykreslovaniePlochy(HraciaPlocha plocha) {
             this.plocha = plocha;
         }
 
+        /**
+         * metoda run je prepisana z triedy Thread a zabezpecuje neustale prekreslovanie hracej plochy
+         */
         @Override
         public void run() {
             while (this.plocha.isVisible() && !this.plocha.jeKoniec) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
+                        //metoda repaint vola metodu paintComponent() v triede Hracia plocha
                         VykreslovaniePlochy.this.plocha.repaint();
                     }
                 });
-                // kazdych 15 miliseund bude prebiehat update prvkov hracej polochy
+                // kazdych 30 miliseund bude prebiehat update(prekreslovanie) prvkov hracej polochy
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException ex) {
@@ -298,7 +375,13 @@ public class HraciaPlocha extends JPanel {
         }
     }
 
+    /**
+     * trieda Manzer menezuje pohyb a strelbu hraca na hracej ploche
+     */
     private class Manazer implements KeyListener {
+        /**
+         * Konstruktor vytvori novy objekt Manazera
+         */
         public Manazer() {
         }
 
@@ -306,6 +389,11 @@ public class HraciaPlocha extends JPanel {
         public void keyTyped(KeyEvent e) {
         }
 
+        /**
+         * metoda reaguje na stlacenie klavesnice a umoznuje pohyb hraca dolava alebo doprava pomocou stlacania sipok
+         * umoznuje strlbu hraca pomocou stlacania medzernika
+         * @param e aktualny key event
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
@@ -316,6 +404,10 @@ public class HraciaPlocha extends JPanel {
             }
         }
 
+        /**
+         * metoda reaguje na pustanie sipky dolava alebo doprava
+         * @param e aktualny key event
+         */
         @Override
         public void keyReleased(KeyEvent e) {
             int keyCode = e.getKeyCode();
