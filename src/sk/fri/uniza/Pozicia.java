@@ -30,7 +30,6 @@ public class Pozicia {
     public int getX() {
         return this.x;
     }
-
     /**
      * nastavi x na nove x
      * @param x nova
