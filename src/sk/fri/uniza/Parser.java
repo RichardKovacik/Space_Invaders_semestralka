@@ -101,7 +101,7 @@ public class Parser {
     }
 
     /**
-     * meotda vrati atribut zoznamHracov
+     * meotoda vrati atribut zoznamHracov
      * @return atribut zoznamHracov
      */
     public ZoznamHracov getZoznamHracov() {

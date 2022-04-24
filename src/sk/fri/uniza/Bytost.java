@@ -15,6 +15,8 @@ public abstract class Bytost implements Serializable {
     protected transient int zivoty;
     protected transient Pozicia pozicia;
     protected transient boolean jeNaZive;
+    protected transient boolean vlavo;
+    protected transient boolean vpravo;
     protected transient BufferedImage obrazok;
     protected transient ArrayList<Raketa> rakety;
 

@@ -31,7 +31,7 @@ public class ZoznamHracov implements Serializable {
     }
 
     /**
-     * metda vrati zoznam hracov
+     * metda vrati utriedeny zoznam hracov
      * @return hodnoty arraylistu zoznamHracov
      */
     public List<Hrac> getZoznamHracov() {

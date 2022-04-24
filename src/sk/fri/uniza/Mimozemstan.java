@@ -4,7 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -12,10 +11,7 @@ import java.util.ArrayList;
  * @author richard
  */
 public class Mimozemstan extends Bytost {
-    private boolean vlavo;
-    private boolean vpravo;
     private int rychlost;
-
     /**
      * Konstruktor vytvori mimozemstana na zadanej pozicii
      * @param x pozicia mimozemstana

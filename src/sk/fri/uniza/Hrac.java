@@ -19,8 +19,6 @@ public class Hrac extends Bytost {
     private String meno;
     private int score;
     private Narodnost narodnost;
-    private transient boolean vlavo;
-    private transient boolean vpravo;
     private transient boolean jeVystrel;
     private transient Timer timer;
     //zobrazenie zivotov (3 srdiecka)
@@ -46,18 +44,6 @@ public class Hrac extends Bytost {
     }
 
     /**
-     * prepisana abstraktna metoda z triedy Bytost, kotara zabezpeci vystrel hraca
-     */
-    @Override
-    void vystrel() {
-        //pokial hrac stalcil medzernik tak sa vykona vystrel
-        if (this.jeVystrel) {
-            this.rakety.add(new Raketa(this.pozicia.getX() + 5, this.pozicia.getY(), true));
-        }
-        this.jeVystrel = false;
-    }
-
-    /**
      * dany listener sa vykona kazdu pol sekundy a zavola metodu vystrel
      */
     // skotroluj vystrel kazdych 500 milis, hrac striekla pomocou stalcanie P/p na klavesnici
@@ -68,6 +54,17 @@ public class Hrac extends Bytost {
             }
         });
     };
+    /**
+     * prepisana abstraktna metoda z triedy Bytost, kotara zabezpeci vystrel hraca
+     */
+    @Override
+    void vystrel() {
+        //pokial hrac stalcil medzernik tak sa vykona vystrel
+        if (this.jeVystrel) {
+            this.rakety.add(new Raketa(this.pozicia.getX() + 5, this.pozicia.getY(), true));
+        }
+        this.jeVystrel = false;
+    }
 
     /**
      *  metoda zobrazi zivoty hraca v podobe obrazkov srdiecka
