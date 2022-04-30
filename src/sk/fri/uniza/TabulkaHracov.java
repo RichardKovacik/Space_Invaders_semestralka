@@ -1,7 +1,5 @@
 package sk.fri.uniza;
 
-import sk.fri.uniza.gui.ZadanieMenaDialog;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
@@ -12,7 +10,7 @@ import java.util.List;
  */
 public class TabulkaHracov extends AbstractTableModel {
     private List<Hrac> zoznamHracov;
-    private String[] nazvyStlpcov = {"Poradie", "Meno", "Skore", "Narodnost"};
+    private final String[] nazvyStlpcov = {"Poradie", "Meno", "Skore", "Narodnost"};
 
     /**
      * Konstruktor vytvori novu tabulku so zadanymi hracmi
@@ -68,14 +66,4 @@ public class TabulkaHracov extends AbstractTableModel {
         };
     }
 
-
-    /**
-     * meotda vracia Triedu daneho atributu stlpca
-     * @param columnIndex index stlpca
-     * @return triedu daneho atributu v tabulke
-     */
-    @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return this.getClass();
-    }
 }

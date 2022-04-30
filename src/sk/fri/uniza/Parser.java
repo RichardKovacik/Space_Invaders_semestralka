@@ -18,7 +18,7 @@ public class Parser {
     private boolean suDataPrazdne;
 
     /**
-     * singleton dovoli vrati prave jednu instanciu za cely beh programu
+     * singleton dovoli vrati prave jednu a tu istu instanciu za cely beh programu
      * @return prave aktualnu instanciu triedy Parser
      */
     public static Parser getInstance() {

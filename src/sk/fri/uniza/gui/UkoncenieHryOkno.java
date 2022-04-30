@@ -24,10 +24,10 @@ public class UkoncenieHryOkno {
 
     /**
      * Konstruktor vytvori nove okno po ukonceni hry a nastavu jednotlive prvky a objekty okna
-     * @param hra aktualna
+     * @param hraOkno aktualna
      * @param hrac aktulany
      */
-    public UkoncenieHryOkno(Hra hra, Hrac hrac) {
+    public UkoncenieHryOkno(HraOkno hraOkno, Hrac hrac) {
         this.frame = new JFrame("TABULKA VYSLEDKOV");
         this.frame.add(this.mainPanel);
         this.frame.setPreferredSize(new Dimension(350, 350));
@@ -47,7 +47,7 @@ public class UkoncenieHryOkno {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UkoncenieHryOkno.this.frame.dispose();
-                hra.getFrame().dispose();
+                hraOkno.getFrame().dispose();
                 new Menu();
             }
         });
@@ -64,7 +64,7 @@ public class UkoncenieHryOkno {
      * meotoda vytvori tabulku hracov s hracmi nacitancyh zo suboru, cize takych ktori uz hrali hru
      */
     private void initTabulkaHracov() {
-        TabulkaHracov tabulkaHracov = new TabulkaHracov(this.parser.getZoznamHracov().getZoznamHracov());
+        TabulkaHracov tabulkaHracov = new TabulkaHracov(this.parser.getZoznamHracov().getHraci());
         this.table1.setModel(tabulkaHracov);
 
     }

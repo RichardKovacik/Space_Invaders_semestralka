@@ -12,7 +12,7 @@ import java.awt.*;
  * Trieda hra reprezentuje novu hru ktora vytvori novu hraciu plochu
  * @author richard
  */
-public class Hra {
+public class HraOkno {
     private JFrame frame;
     private HraciaPlocha hraciaPlocha;
     private HraciaPlocha.VykreslovaniePlochy vykreslovacuThread;
@@ -23,7 +23,7 @@ public class Hra {
      * @param narodnost zadana pred spustenim hry
      * @param obtiaznost zadana pred spustenim hry
      */
-    public Hra(String menoHraca, Narodnost narodnost, Obtiaznost obtiaznost) {
+    public HraOkno(String menoHraca, Narodnost narodnost, Obtiaznost obtiaznost) {
         this.frame = new JFrame("SPACE INVADERS GAME");
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.hraciaPlocha = new HraciaPlocha(this, obtiaznost);

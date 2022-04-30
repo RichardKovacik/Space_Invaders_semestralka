@@ -4,8 +4,6 @@ import sk.fri.uniza.enums.Obtiaznost;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -32,22 +30,22 @@ public class Menu {
         this.frame.pack();
         this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
-        this.settingsBtn.addActionListener(e -> this.showSettingDialog());
-        this.quitBtn.addActionListener(e -> this.closeFrame());
-        this.startGamebutton.addActionListener(e -> this.showDialog());
+        this.settingsBtn.addActionListener(e -> this.zobrazNastavenieObtiaznostiDialog());
+        this.quitBtn.addActionListener(e -> this.zatvorMenuOkno());
+        this.startGamebutton.addActionListener(e -> this.zobrazSpecifikaciuHracaDialog());
     }
 
     /**
      * metoda zavrie dane menu okno
      */
-    public void closeFrame() {
+    public void zatvorMenuOkno() {
         this.frame.dispose();
     }
 
     /**
      * metoda zobrazi dialog s nastaveniami obtiaznosti
      */
-    private void showSettingDialog() {
+    private void zobrazNastavenieObtiaznostiDialog() {
         NastavenieObtiaznostiDialog dialog = new NastavenieObtiaznostiDialog();
         this.zvolenaObtiaznost = dialog.getObtiaznost();
     }
@@ -63,7 +61,7 @@ public class Menu {
     /**
      * metoda zobrazi dialog pre zadavanie mena hraca
      */
-    private void showDialog() {
-        new ZadanieMenaDialog(this);
+    private void zobrazSpecifikaciuHracaDialog() {
+        new SpecifikaciaHracaDialog(this);
     }
 }

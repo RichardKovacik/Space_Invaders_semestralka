@@ -85,7 +85,7 @@ title __SPACE_INVADERS's Class Diagram__\n
 
     namespace k.fri.uniza {
       namespace gui {
-        class sk.fri.uniza.gui.Hra {
+        class sk.fri.uniza.gui.HraOkno {
         }
       }
     }
@@ -115,7 +115,7 @@ title __SPACE_INVADERS's Class Diagram__\n
 
     namespace k.fri.uniza {
       namespace gui {
-        class sk.fri.uniza.gui.ZadanieMenaDialog {
+        class sk.fri.uniza.gui.SpecifikaciaHracaDialog {
         }
       }
     }
@@ -127,9 +127,9 @@ title __SPACE_INVADERS's Class Diagram__\n
   sk.fri.uniza.HraciaPlocha -up-|> javax.swing.JPanel
   sk.fri.uniza.Mimozemstan -up-|> sk.fri.uniza.Bytost
   sk.fri.uniza.Raketa o-- sk.fri.uniza.Pozicia : pozicia
-  sk.fri.uniza.gui.Hra o-- sk.fri.uniza.HraciaPlocha : hraciaPlocha
-  sk.fri.uniza.gui.Hra o-- sk.fri.uniza.HraciaPlocha.VykreslovaniePlochy : vykreslovacuThread
-  sk.fri.uniza.gui.ZadanieMenaDialog -up-|> javax.swing.JDialog
+  sk.fri.uniza.gui.HraOkno o-- sk.fri.uniza.HraciaPlocha : hraciaPlocha
+  sk.fri.uniza.gui.HraOkno o-- sk.fri.uniza.HraciaPlocha.VykreslovaniePlochy : vykreslovacuThread
+  sk.fri.uniza.gui.SpecifikaciaHracaDialog -up-|> javax.swing.JDialog
 
 
 right footer

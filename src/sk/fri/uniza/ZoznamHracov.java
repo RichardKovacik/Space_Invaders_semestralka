@@ -11,13 +11,13 @@ import java.util.List;
  * @author Richard Kovacik
  */
 public class ZoznamHracov implements Serializable {
-    private List<Hrac> zoznamHracov;
+    private List<Hrac> hraci;
 
     /**
      * Konstruktor vytvori novy zoznam hracov a inicializuje atribut zoznamHracov
      */
     public ZoznamHracov() {
-        this.zoznamHracov = new ArrayList<>();
+        this.hraci = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class ZoznamHracov implements Serializable {
      */
     public void pridajHraca(Hrac hrac) {
         if (hrac != null) {
-            this.zoznamHracov.add(hrac);
+            this.hraci.add(hrac);
         }
     }
 
@@ -34,15 +34,15 @@ public class ZoznamHracov implements Serializable {
      * metda vrati utriedeny zoznam hracov
      * @return hodnoty arraylistu zoznamHracov
      */
-    public List<Hrac> getZoznamHracov() {
+    public List<Hrac> getHraci() {
         this.utriedHracovPodlaSkore();
-        return new ArrayList<>(this.zoznamHracov);
+        return new ArrayList<>(this.hraci);
     }
 
     /**
      * metoda utriedi list hracov podla skore od najvacsieho po najmesi
      */
     private void utriedHracovPodlaSkore() {
-        this.zoznamHracov.sort(Comparator.comparingInt(Hrac::getScore).reversed());
+        this.hraci.sort(Comparator.comparingInt(Hrac::getScore).reversed());
     }
 }

@@ -1,7 +1,7 @@
 package sk.fri.uniza;
 
 import sk.fri.uniza.enums.Obtiaznost;
-import sk.fri.uniza.gui.Hra;
+import sk.fri.uniza.gui.HraOkno;
 import sk.fri.uniza.gui.UkoncenieHryOkno;
 
 import javax.swing.*;
@@ -25,16 +25,16 @@ public class HraciaPlocha extends JPanel {
     private Timer timer;
     private Timer timer2;
     private Obtiaznost obtiaznost;
-    private Hra hra;
+    private HraOkno hraOkno;
     private boolean jeKoniec;
     private int rychlostStrelby;
 
     /**
      * Konstruktor vytvori novu hraciu plochu so zadanou hrou a obtiaznostou
-     * @param hra znamena akutalnu hru
+     * @param hraOkno znamena akutalnu hru
      * @param obtiaznost hry
      */
-    public HraciaPlocha(Hra hra, Obtiaznost obtiaznost) {
+    public HraciaPlocha(HraOkno hraOkno, Obtiaznost obtiaznost) {
         //deafultne nastavi sirku a vysku hracej plochy v pixeloch
         this.setSize(SIRKA, VYSKA);
         this.setPreferredSize(new Dimension(SIRKA, VYSKA));
@@ -43,7 +43,7 @@ public class HraciaPlocha extends JPanel {
         this.requestFocusInWindow();
         this.addKeyListener(new Manazer());
         this.obtiaznost = obtiaznost;
-        this.hra = hra;
+        this.hraOkno = hraOkno;
         this.jeKoniec = false;
         this.initBytosti();
         //casovac pre strelbu mimozemstanova kazdu sekundu
@@ -196,7 +196,7 @@ public class HraciaPlocha extends JPanel {
             this.jeKoniec = true;
             this.timer.stop();
             this.timer2.stop();
-            new UkoncenieHryOkno(this.hra, this.getHrac());
+            new UkoncenieHryOkno(this.hraOkno, this.getHrac());
         }
     }
 

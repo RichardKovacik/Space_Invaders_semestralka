@@ -12,7 +12,7 @@ import java.util.Map;
  * Trieda repezentuje dialogove okno pre zadavanie mena a narodnosti hraca
  * @author Richard Kovacik
  */
-public class ZadanieMenaDialog extends JDialog {
+public class SpecifikaciaHracaDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -25,20 +25,20 @@ public class ZadanieMenaDialog extends JDialog {
      * Konstruktor vytvori nove dialogove okno pre zadavanie mena hraca a nastavi vsetky prvky vramci okna
      * @param menu aktualne
      */
-    public ZadanieMenaDialog(Menu menu) {
+    public SpecifikaciaHracaDialog(Menu menu) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         this.buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ZadanieMenaDialog.this.onOK();
-                ZadanieMenaDialog.this.menoHraca = ZadanieMenaDialog.this.menoField.getText();
+                SpecifikaciaHracaDialog.this.onOK();
+                SpecifikaciaHracaDialog.this.menoHraca = SpecifikaciaHracaDialog.this.menoField.getText();
                 narodnostHraca = (Narodnost)narodnostiComboBox.getSelectedItem();
                 //kotrla ci zadanne meno nie je null alebo prazdny String
-                if (ZadanieMenaDialog.this.menoHraca != null && !ZadanieMenaDialog.this.menoHraca.isBlank()) {
-                    menu.closeFrame();
-                    new Hra(ZadanieMenaDialog.this.menoHraca, ZadanieMenaDialog.this.narodnostHraca, menu.getZvolenaObtiaznost());
+                if (SpecifikaciaHracaDialog.this.menoHraca != null && !SpecifikaciaHracaDialog.this.menoHraca.isBlank()) {
+                    menu.zatvorMenuOkno();
+                    new HraOkno(SpecifikaciaHracaDialog.this.menoHraca, SpecifikaciaHracaDialog.this.narodnostHraca, menu.getZvolenaObtiaznost());
                 }
 
             }

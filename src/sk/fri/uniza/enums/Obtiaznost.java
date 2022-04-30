@@ -6,23 +6,23 @@ package sk.fri.uniza.enums;
  * @author richa
  */
 public enum Obtiaznost {
-    LAHKA("L"),
-    STREDNA("S"),
-    TAZKA("T");
+    LAHKA('L'),
+    STREDNA('S'),
+    TAZKA('T');
 
-    private String reprezentacia;
+    private char reprezentacia;
 
     /**
      * nastavi textovu reprezentaciu danej obtiaznosti
      * @param reprezentacia danej obtiaznosti hraca ako text
      */
-    Obtiaznost(String reprezentacia) {
+    Obtiaznost(char reprezentacia) {
         this.reprezentacia = reprezentacia;
     }
     /**
      * @return textovu reprezentaciu danej narodnsti
      */
-    public String getReprezentacia() {
+    public char getReprezentacia() {
         return this.reprezentacia;
     }
 }
