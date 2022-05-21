@@ -2,8 +2,12 @@ package sk.fri.uniza.gui;
 
 import sk.fri.uniza.enums.Obtiaznost;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
 
 /**
  * 27. 2. 2022 - 15:54

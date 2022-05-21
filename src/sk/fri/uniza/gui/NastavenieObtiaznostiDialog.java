@@ -1,10 +1,21 @@
 package sk.fri.uniza.gui;
 
-import sk.fri.uniza.enums.Narodnost;
 import sk.fri.uniza.enums.Obtiaznost;
 
-import javax.swing.*;
-import java.awt.event.*;
+import javax.swing.JPanel;
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+
 
 /**
  * Trieda reprezentuje dialog pre nastavenie obtiaznosti hry

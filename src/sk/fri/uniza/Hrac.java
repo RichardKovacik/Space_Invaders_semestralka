@@ -3,8 +3,9 @@ package sk.fri.uniza;
 import sk.fri.uniza.enums.Narodnost;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;

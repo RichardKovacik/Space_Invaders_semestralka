@@ -1,9 +1,5 @@
 package sk.fri.uniza;
 
-
-import java.awt.*;
-import java.io.Serializable;
-
 /**
  * 27. 2. 2022 - 15:54
  * Treida sluzi na reprezentaciu pozicie x,y kazdej bytosti v hre

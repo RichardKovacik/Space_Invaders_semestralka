@@ -1,6 +1,6 @@
 package sk.fri.uniza;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,8 +60,7 @@ public abstract class Bytost implements Serializable {
     // je zrazka bytosti s raketou?
     public boolean jeZrazka(int x, int y) {
         //zlava zasiahne strela alebo zprava kedze stred obrazka je posunuty viac dolava
-        if (((this.pozicia.getX() - x >= 0 && this.pozicia.getX() - x <= 5) || (this.pozicia.getX() - x < 0 && this.pozicia.getX() - x >= -20))
-        && Math.abs(this.pozicia.getY() - y) <= 15) {
+        if (((this.pozicia.getX() - x >= 0 && this.pozicia.getX() - x <= 5) || (this.pozicia.getX() - x < 0 && this.pozicia.getX() - x >= -20)) && Math.abs(this.pozicia.getY() - y) <= 15) {
             return true;
         }
         return false;

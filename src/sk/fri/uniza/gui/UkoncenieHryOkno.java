@@ -4,8 +4,11 @@ import sk.fri.uniza.Hrac;
 import sk.fri.uniza.Parser;
 import sk.fri.uniza.TabulkaHracov;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

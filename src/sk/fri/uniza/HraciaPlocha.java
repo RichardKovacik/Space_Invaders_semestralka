@@ -171,6 +171,7 @@ public class HraciaPlocha extends JPanel {
         //kotrola zrazky hracovej rakety s mimozemstanom
         for (Bytost b : this.bytosti) {
             if (b.jeNaZive && b instanceof Mimozemstan) {
+                //prechadzam hracove rakety, ci nenestala kolizia s nejakym mimozemstanom
                 for (Raketa r : this.getHrac().getRakety()) {
                     //hrac trafil mimozemsku lod s raketou
                     if (b.jeZrazka(r.getPozicia().getX(), r.getPozicia().getY()) && !r.jeZnicena()) {
@@ -323,7 +324,7 @@ public class HraciaPlocha extends JPanel {
     private void kresliMimozemstanov(Graphics2D g2d) {
         for (Bytost b : this.bytosti) {
             if (b.jeNaZive && b instanceof Mimozemstan) {
-                ((Mimozemstan) b).zobraz(g2d);
+                b.zobraz(g2d);
             }
         }
     }

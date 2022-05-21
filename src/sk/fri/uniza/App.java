@@ -2,10 +2,8 @@ package sk.fri.uniza;
 
 import sk.fri.uniza.gui.Menu;
 
-import javax.swing.*;
-import java.util.TimerTask;
-import java.util.Timer;
-
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  * Created by IntelliJ IDEA.
  * User: richard

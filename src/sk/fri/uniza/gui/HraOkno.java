@@ -4,8 +4,8 @@ import sk.fri.uniza.HraciaPlocha;
 import sk.fri.uniza.enums.Narodnost;
 import sk.fri.uniza.enums.Obtiaznost;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  * 27. 2. 2022 - 15:54
