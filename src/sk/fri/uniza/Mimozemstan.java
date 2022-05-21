@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -32,7 +33,7 @@ public class Mimozemstan extends Bytost {
     @Override
     public void initObrazok() {
         try {
-            this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/alien.png"));
+            this.obrazok = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/images/alien.png")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

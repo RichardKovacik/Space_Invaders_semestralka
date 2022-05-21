@@ -14,14 +14,17 @@ import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import javax.swing.KeyStroke;
 import javax.swing.JComponent;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Trieda repezentuje dialogove okno pre zadavanie mena a narodnosti hraca
@@ -100,12 +103,12 @@ public class SpecifikaciaHracaDialog extends JDialog {
     /**
      * metoda vytvori combox s hodnotami enumu Naodnost a ku kazdej narodnosti priradi jeden obrazok
      */
-    private void createUIComponents() {
+    private void createUIComponents()  {
         Map<Object, Icon> icons = new HashMap<>();
-        icons.put(Narodnost.CZ, new ImageIcon("src/sk/fri/uniza/flags/cz_flag.png"));
-        icons.put(Narodnost.PL, new ImageIcon("src/sk/fri/uniza/flags/pl_flag.png"));
-        icons.put(Narodnost.USA, new ImageIcon("src/sk/fri/uniza/flags/usa_flag.png"));
-        icons.put(Narodnost.DE, new ImageIcon("src/sk/fri/uniza/flags/nem_flag.png"));
+        icons.put(Narodnost.CZ, new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/flags/cz_flag.png"))));
+        icons.put(Narodnost.PL,  new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/flags/pl_flag.png"))));
+        icons.put(Narodnost.USA,  new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/flags/usa_flag.png"))));
+        icons.put(Narodnost.DE,  new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/flags/nem_flag.png"))));
         this.narodnostiComboBox = new JComboBox<>(Narodnost.values());
         this.narodnostiComboBox.setRenderer(new IconListRenderer(icons));
 

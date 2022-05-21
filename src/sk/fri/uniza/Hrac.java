@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -87,7 +88,7 @@ public class Hrac extends Bytost {
     private void initObrazkyZivotov() {
         for (int i = 0; i < this.srdiecka.length; i++) {
             try {
-                this.srdiecka[i] = ImageIO.read(new File("src/sk/fri/uniza/images/heart.png"));
+                this.srdiecka[i] = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/images/heart.png")));
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -100,7 +101,7 @@ public class Hrac extends Bytost {
     @Override
     public void initObrazok() {
         try {
-            this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/player.png"));
+            this.obrazok = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/images/player.png")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

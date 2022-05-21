@@ -3,8 +3,8 @@ package sk.fri.uniza;
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 27. 2. 2022 - 15:54
@@ -37,7 +37,7 @@ public class Raketa {
      */
     private void initObrazok() {
         try {
-            this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/bomb.png"));
+            this.obrazok = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/images/bomb.png")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -48,7 +48,7 @@ public class Raketa {
      */
     private void initObrazokExplozie() {
         try {
-            this.obrazok = ImageIO.read(new File("src/sk/fri/uniza/images/explosion.png"));
+            this.obrazok = ImageIO.read(Objects.requireNonNull(this.getClass().getResource("/images/explosion.png")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
