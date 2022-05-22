@@ -2,7 +2,6 @@ package sk.fri.uniza;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 

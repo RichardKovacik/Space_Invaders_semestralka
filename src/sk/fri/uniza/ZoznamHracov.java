@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 27. 2. 2022 - 15:54
- *
+ * Trieda uchovava zoznam vsetkych hracov
  * @author Richard Kovacik
  */
 public class ZoznamHracov implements Serializable {
@@ -19,6 +19,7 @@ public class ZoznamHracov implements Serializable {
     public ZoznamHracov() {
         this.hraci = new ArrayList<>();
     }
+
 
     /**
      * Metoda prida aktualneho hraca do zoznamu hracov
@@ -45,4 +46,5 @@ public class ZoznamHracov implements Serializable {
     private void utriedHracovPodlaSkore() {
         this.hraci.sort(Comparator.comparingInt(Hrac::getScore).reversed());
     }
+
 }

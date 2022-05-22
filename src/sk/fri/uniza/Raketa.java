@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * 27. 2. 2022 - 15:54
- * Treida Raketa rerezentuje rakety c hre
+ * Treida Raketa rerezentuje rakety v hre
  * @author richard
  */
 public class Raketa {

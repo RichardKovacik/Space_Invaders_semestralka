@@ -68,4 +68,8 @@ public class Menu {
     private void zobrazSpecifikaciuHracaDialog() {
         new SpecifikaciaHracaDialog(this);
     }
+
+    public JFrame getFrame() {
+        return this.frame;
+    }
 }
